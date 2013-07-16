@@ -23,6 +23,11 @@ TEST_F(SoundexEncoding, ReplacesConsonantsWithAppropiateDigits) {
 TEST_F(SoundexEncoding, IgnoresNonAlphabetics) {
 	ASSERT_THAT(soundex.encode("A#"), Eq("A000"));
 }
-TEST_F(SoundexEncoding, DISABLED_ReplacesMultipleConsonantsWithDigits) {
+
+TEST_F(SoundexEncoding, ReplacesMultipleConsonantsWithDigits) {
 	ASSERT_THAT(soundex.encode("Acdl"), Eq("A234"));
+}
+
+TEST_F(SoundexEncoding, LimitsLenghtToFourCharacters) {
+					ASSERT_THAT(soundex.encode("Dcdlb").length(), Eq(4u));
 }
